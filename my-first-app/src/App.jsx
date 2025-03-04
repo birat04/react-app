@@ -5,16 +5,8 @@ import './App.css'
 
 const Card = ({ title, content }) => {
   return (
-    <div class= "card" style={{
-      border: '1px solid black', 
-      padding: '20px', 
-      margin: '10px',
-      width: '300px',
-      display: 'inline-block',
-      backgroundColor: 'lightblue',
-      borderRadius: '10px',
-      minHeight: '200px',
-      boxShadow: '5px 5px 5px 5px lightgrey'}}>
+    <div className= "card"> 
+      
 
       <h2>{title}</h2>
       <p>{content}</p>
