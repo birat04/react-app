@@ -7,12 +7,10 @@ const Card = ({ title, content, onLike, onDislike }) => {
   return (
     <div className="card"> 
       <h2>{title}</h2>
-      <button onClick={onLike}>
-        Like
-      </button>
-      <button onClick={onDislike}>
-        Dislike
-      </button>
+      <div className="card-actions">
+        <button onClick={onLike}>Like</button>
+        <button onClick={onDislike}>Dislike</button>
+      </div>
       <p>{content}</p>
     </div>
   )   
