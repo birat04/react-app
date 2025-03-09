@@ -22,30 +22,25 @@
 
 @layer base {
   body {
-    font-family: "DM Sans", sans-serif;
+    font-family: "DM Sans", serif;
     font-optical-sizing: auto;
-    @apply relative min-h-screen bg-primary;
-  }
-
-  .pattern {
-    background-image: var(--background-image-hero-pattern);
-    @apply w-full h-full fixed top-0 left-0 bg-center bg-cover -z-10;
-  }
-
-  main {
-    @apply relative flex items-center justify-center min-h-screen text-center;
+    background: #030014;
   }
 
   h1 {
-    @apply text-white text-5xl font-bold sm:text-[64px] sm:leading-[76px];
+    @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-[76px];
   }
 
   h2 {
     @apply text-2xl font-bold text-white sm:text-3xl;
   }
 
+  main {
+    @apply min-h-screen relative bg-primary;
+  }
+
   header {
-    @apply sm:mt-10 mt-5 relative z-10;
+    @apply sm:mt-10 mt-5;
   }
 
   header img {
@@ -54,6 +49,10 @@
 }
 
 @layer components {
+  .pattern {
+    @apply bg-hero-pattern w-screen h-screen bg-center bg-cover absolute z-0;
+  }
+
   .wrapper {
     @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
   }
@@ -144,7 +143,7 @@
 }
 
 @utility text-gradient {
-  @apply bg-gradient-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
 }
 
 @utility fancy-text {
