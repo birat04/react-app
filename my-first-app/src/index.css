@@ -142,10 +142,13 @@
   }
 }
 
-@utility text-gradient {
-  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+@layer utilities {
+  .text-gradient {
+    background-image: linear-gradient(to right, #a98cf9, #8e66f3);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 }
-
 @utility fancy-text {
   -webkit-text-stroke: 5px rgba(206, 206, 251, 0.5);
   font-size: 190px;
