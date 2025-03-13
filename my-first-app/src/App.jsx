@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Search from './components/search.jsx';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3/';
@@ -14,25 +14,31 @@ const API_OPTIONS = {
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [movies, setMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const fetchMovies = async () => {
+  const fetchMovies = useCallback(async () => {
     if (!searchTerm) return; 
 
     try {
-      const response = await fetch(`${API_BASE_URL}search/movie?query=${searchTerm}&api_key=${API_KEY}`, API_OPTIONS);
+      const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
+      const response = await fetch(endpoint, API_OPTIONS);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch movies');
+      }
       const data = await response.json();
-      setMovies(data.results || []);
+      if(data.Response === 'False'){
+        setErrorMessage(data.Error);
+      }
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
       setErrorMessage('Error fetching movies');
     }
-  };
+  }, [searchTerm]);
 
   useEffect(() => {
     fetchMovies();
-  }, [searchTerm]);
+  }, [fetchMovies]);
 
   return (
     <main>
@@ -46,28 +52,15 @@ const App = () => {
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
 
-        <section className="allMovies">
+        <section className="all-movies">
           <h2>All Movies</h2>
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-          <div className="movie-list">
-            {movies.length > 0 ? (
-              movies.map((movie) => (
-                <div key={movie.id} className="movie-card">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <h3>{movie.title}</h3>
-                </div>
-              ))
-            ) : (
-              <p>No movies found</p>
-            )}
-          </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>} 
         </section>
       </div>
     </main>
   );
 };
-
 export default App;
+
+        
+
