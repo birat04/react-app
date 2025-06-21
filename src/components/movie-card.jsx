@@ -1,6 +1,5 @@
 import React from 'react'
 
-// Fallback images
 const starIcon = 'https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/star.svg'
 const noMovieImage = 'https://via.placeholder.com/500x750?text=No+Poster'
 

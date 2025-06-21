@@ -5,7 +5,6 @@ import MovieCard from './components/movie-card.jsx'
 import { useDebounce } from 'react-use'
 import { getTrendingMovies, updateSearchCount } from './appwrite.js'
 
-// Fallback images
 const heroImage = 'https://via.placeholder.com/1200x400/0f0d23/ffffff?text=Movie+Search'
 const fallbackImage = 'https://via.placeholder.com/500x750/0f0d23/ffffff?text=No+Image'
 
